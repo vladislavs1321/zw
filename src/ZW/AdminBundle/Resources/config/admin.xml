@@ -5,9 +5,16 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
        <service id="zw.admin.user" class="ZW\AdminBundle\Admin\UserAdmin">
-            <tag name="sonata.admin" manager_type="orm" group="Пользователи" label="Пользователи"/>
+            <tag name="sonata.admin" manager_type="orm" group="Пользователи" label="Действия:"/>
             <argument />
             <argument>ZW\AppBundle\Entity\User</argument>
+            <argument />
+      </service>
+
+      <service id="zw.admin.offer" class="ZW\AdminBundle\Admin\OfferAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Предложение" label="Действия:"/>
+            <argument />
+            <argument>ZW\AppBundle\Entity\Offer</argument>
             <argument />
       </service>
    </services>

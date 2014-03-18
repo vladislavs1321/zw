@@ -2376,6 +2376,12 @@
         <argument>ru</argument>
         <argument>messages</argument>
       </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/vladislav/web/zw/src/ZW/AdminBundle/Resources/translations/SonataAdminBundle.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>SonataAdminBundle</argument>
+      </call>
     </service>
     <service id="translation.loader.php" class="Symfony\Component\Translation\Loader\PhpFileLoader">
       <tag name="translation.loader" alias="php"/>
@@ -3353,7 +3359,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>532894ec53397</argument>
+            <argument>53289a21d9a32</argument>
           </service>
         </argument>
       </argument>
@@ -3649,7 +3655,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>532894ec53397</argument>
+            <argument>53289a21d9a32</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -4829,6 +4835,7 @@
       <call method="setAdminServiceIds">
         <argument type="collection">
           <argument>zw.admin.user</argument>
+          <argument>zw.admin.offer</argument>
         </argument>
       </call>
       <call method="setAdminGroups">
@@ -4841,12 +4848,23 @@
               <argument>zw.admin.user</argument>
             </argument>
           </argument>
+          <argument key="Предложение" type="collection">
+            <argument key="label">Предложение</argument>
+            <argument key="label_catalogue">SonataAdminBundle</argument>
+            <argument key="roles" type="collection"/>
+            <argument key="items" type="collection">
+              <argument>zw.admin.offer</argument>
+            </argument>
+          </argument>
         </argument>
       </call>
       <call method="setAdminClasses">
         <argument type="collection">
           <argument key="ZW\AppBundle\Entity\User" type="collection">
             <argument>zw.admin.user</argument>
+          </argument>
+          <argument key="ZW\AppBundle\Entity\Offer" type="collection">
+            <argument>zw.admin.offer</argument>
           </argument>
         </argument>
       </call>
@@ -4856,6 +4874,7 @@
       <argument type="service" id="sonata.admin.pool"/>
       <argument type="collection">
         <argument>zw.admin.user</argument>
+        <argument>zw.admin.offer</argument>
       </argument>
       <argument type="service" id="service_container"/>
     </service>
@@ -4989,7 +5008,7 @@
       <argument>Sonata\AdminBundle\Security\Acl\Permission\MaskBuilder</argument>
     </service>
     <service id="zw.admin.user" class="ZW\AdminBundle\Admin\UserAdmin" scope="prototype">
-      <tag name="sonata.admin" manager_type="orm" group="Пользователи" label="Пользователи"/>
+      <tag name="sonata.admin" manager_type="orm" group="Пользователи" label="Действия:"/>
       <argument>zw.admin.user</argument>
       <argument>ZW\AppBundle\Entity\User</argument>
       <argument>SonataAdminBundle:CRUD</argument>
@@ -5046,7 +5065,103 @@
         <argument type="service" id="sonata.admin.label.strategy.native"/>
       </call>
       <call method="setLabel">
-        <argument>Пользователи</argument>
+        <argument>Действия:</argument>
+      </call>
+      <call method="setPersistFilters">
+        <argument>false</argument>
+      </call>
+      <call method="setTemplates">
+        <argument type="collection">
+          <argument key="user_block">SonataAdminBundle:Core:user_block.html.twig</argument>
+          <argument key="layout">ZWAdminBundle::layout.html.twig</argument>
+          <argument key="ajax">SonataAdminBundle::ajax_layout.html.twig</argument>
+          <argument key="dashboard">SonataAdminBundle:Core:dashboard.html.twig</argument>
+          <argument key="list">SonataAdminBundle:CRUD:list.html.twig</argument>
+          <argument key="show">SonataAdminBundle:CRUD:show.html.twig</argument>
+          <argument key="edit">SonataAdminBundle:CRUD:edit.html.twig</argument>
+          <argument key="history">SonataAdminBundle:CRUD:history.html.twig</argument>
+          <argument key="history_revision_timestamp">SonataAdminBundle:CRUD:history_revision_timestamp.html.twig</argument>
+          <argument key="acl">SonataAdminBundle:CRUD:acl.html.twig</argument>
+          <argument key="action">SonataAdminBundle:CRUD:action.html.twig</argument>
+          <argument key="short_object_description">SonataAdminBundle:Helper:short-object-description.html.twig</argument>
+          <argument key="preview">SonataAdminBundle:CRUD:preview.html.twig</argument>
+          <argument key="list_block">SonataAdminBundle:Block:block_admin_list.html.twig</argument>
+          <argument key="delete">SonataAdminBundle:CRUD:delete.html.twig</argument>
+          <argument key="batch">SonataAdminBundle:CRUD:list__batch.html.twig</argument>
+          <argument key="select">SonataAdminBundle:CRUD:list__select.html.twig</argument>
+          <argument key="batch_confirmation">SonataAdminBundle:CRUD:batch_confirmation.html.twig</argument>
+          <argument key="inner_list_row">SonataAdminBundle:CRUD:list_inner_row.html.twig</argument>
+          <argument key="base_list_field">SonataAdminBundle:CRUD:base_list_field.html.twig</argument>
+          <argument key="pager_links">SonataAdminBundle:Pager:links.html.twig</argument>
+          <argument key="pager_results">SonataAdminBundle:Pager:results.html.twig</argument>
+          <argument key="search">SonataAdminBundle:Core:search.html.twig</argument>
+          <argument key="search_result_block">SonataAdminBundle:Block:block_search_result.html.twig</argument>
+        </argument>
+      </call>
+      <call method="setSecurityInformation">
+        <argument type="collection"/>
+      </call>
+      <call method="initialize"/>
+    </service>
+    <service id="zw.admin.offer" class="ZW\AdminBundle\Admin\OfferAdmin" scope="prototype">
+      <tag name="sonata.admin" manager_type="orm" group="Предложение" label="Действия:"/>
+      <argument>zw.admin.offer</argument>
+      <argument>ZW\AppBundle\Entity\Offer</argument>
+      <argument>SonataAdminBundle:CRUD</argument>
+      <call method="setFormTheme">
+        <argument type="collection">
+          <argument>SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig</argument>
+        </argument>
+      </call>
+      <call method="setFilterTheme">
+        <argument type="collection">
+          <argument>SonataDoctrineORMAdminBundle:Form:filter_admin_fields.html.twig</argument>
+        </argument>
+      </call>
+      <call method="setManagerType">
+        <argument>orm</argument>
+      </call>
+      <call method="setModelManager">
+        <argument type="service" id="sonata.admin.manager.orm"/>
+      </call>
+      <call method="setFormContractor">
+        <argument type="service" id="sonata.admin.builder.orm_form"/>
+      </call>
+      <call method="setShowBuilder">
+        <argument type="service" id="sonata.admin.builder.orm_show"/>
+      </call>
+      <call method="setListBuilder">
+        <argument type="service" id="sonata.admin.builder.orm_list"/>
+      </call>
+      <call method="setDatagridBuilder">
+        <argument type="service" id="sonata.admin.builder.orm_datagrid"/>
+      </call>
+      <call method="setTranslator">
+        <argument type="service" id="translator.default"/>
+      </call>
+      <call method="setConfigurationPool">
+        <argument type="service" id="sonata.admin.pool"/>
+      </call>
+      <call method="setRouteGenerator">
+        <argument type="service" id="sonata.admin.route.default_generator"/>
+      </call>
+      <call method="setValidator">
+        <argument type="service" id="validator"/>
+      </call>
+      <call method="setSecurityHandler">
+        <argument type="service" id="sonata.admin.security.handler"/>
+      </call>
+      <call method="setMenuFactory">
+        <argument type="service" id="knp_menu.factory"/>
+      </call>
+      <call method="setRouteBuilder">
+        <argument type="service" id="sonata.admin.route.path_info"/>
+      </call>
+      <call method="setLabelTranslatorStrategy">
+        <argument type="service" id="sonata.admin.label.strategy.native"/>
+      </call>
+      <call method="setLabel">
+        <argument>Действия:</argument>
       </call>
       <call method="setPersistFilters">
         <argument>false</argument>

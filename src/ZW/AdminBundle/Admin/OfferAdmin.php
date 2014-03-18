@@ -13,7 +13,7 @@ use Sonata\AdminBundle\Validator\ErrorElement;
 /**
  * @author Vladislav Shishko <13thMerlin@gmail.com>
  */
-class UserAdmin extends Admin
+class OfferAdmin extends Admin
 {
 	/**
 	 * @inheritDoc
@@ -21,8 +21,7 @@ class UserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('enabled')
-            ->add('balance.amount')
+            ->add('name')
         ;
     }
 
@@ -33,11 +32,7 @@ class UserAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('username')
-            ->add('balance.amount')
-            ->add('roles')
-            ->add('enabled')
-
+            ->add('name')
         ;
     }
    
