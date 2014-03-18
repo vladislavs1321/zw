@@ -1,3 +1,7 @@
+zw_admin:
+    resource: "@ZWAdminBundle/Resources/config/routing.xml"
+    prefix:   /
+
 zw_app:
     resource: "@ZWAppBundle/Resources/config/routing.xml"
     prefix:   /

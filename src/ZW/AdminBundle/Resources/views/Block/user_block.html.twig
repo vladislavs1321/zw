@@ -1,0 +1,7 @@
+{% block user_block %}
+{% spaceless %}
+<div class="navbar-text pull-right">
+<span>{{ app.user.username }}&nbsp;|&nbsp;<a href="{{ path('fos_user_security_logout') }}">{{ 'Выход'|trans }}</a></span>
+</div>
+{% endspaceless %}
+{% endblock %}

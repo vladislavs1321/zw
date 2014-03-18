@@ -1,13 +1,4 @@
-3f384f,127.0.0.1,GET,http://zw/app_dev.php/admin/dashboard,1395149168,4c9a58
-4c9a58,127.0.0.1,GET,http://zw/app_dev.php/admin/dashboard,1395149168,
-1403c9,127.0.0.1,GET,http://zw/app_dev.php/login,1395149205,
-7dbf18,127.0.0.1,POST,http://zw/app_dev.php/login_check,1395149212,
-8a41d0,127.0.0.1,GET,http://zw/app_dev.php/,1395149212,9a7885
-9a7885,127.0.0.1,GET,http://zw/app_dev.php/,1395149212,
-9421d3,127.0.0.1,GET,http://zw/app_dev.php/,1395149243,
-0f12c6,127.0.0.1,GET,http://zw/app_dev.php/,1395149249,
-a77e80,127.0.0.1,GET,http://zw/app_dev.php/,1395149273,
-b6ca4a,127.0.0.1,GET,http://zw/app_dev.php/admin,1395149277,
-c7e006,127.0.0.1,GET,http://zw/app_dev.php/admin/,1395149277,
-c88ed2,127.0.0.1,GET,http://zw/app_dev.php/admin/dashboard,1395149278,
-aa4859,127.0.0.1,GET,http://zw/app_dev.php/admin/dashboard,1395149305,
+8f207f,127.0.0.1,GET,http://zw/app_dev.php/admin/zw/app/user/list,1395168256,
+22096b,127.0.0.1,GET,http://zw/app_dev.php/admin/zw/app/user/list,1395168295,
+c48b3b,127.0.0.1,GET,http://zw/app_dev.php/admin/zw/app/user/list,1395168465,
+371736,127.0.0.1,GET,http://zw/app_dev.php/admin/zw/app/user/list,1395168493,

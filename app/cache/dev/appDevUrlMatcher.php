@@ -135,6 +135,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // zw_admin_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'zw_admin_homepage')), array (  '_controller' => 'ZW\\AdminBundle\\Controller\\DefaultController::indexAction',));
+        }
+
         // zw_app_homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
@@ -347,6 +352,44 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // sonata_admin_search
             if ($pathinfo === '/admin/search') {
                 return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CoreController::searchAction',  '_route' => 'sonata_admin_search',);
+            }
+
+            if (0 === strpos($pathinfo, '/admin/zw/app/user')) {
+                // admin_zw_app_user_list
+                if ($pathinfo === '/admin/zw/app/user/list') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'zw.admin.user',  '_sonata_name' => 'admin_zw_app_user_list',  '_route' => 'admin_zw_app_user_list',);
+                }
+
+                // admin_zw_app_user_create
+                if ($pathinfo === '/admin/zw/app/user/create') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'zw.admin.user',  '_sonata_name' => 'admin_zw_app_user_create',  '_route' => 'admin_zw_app_user_create',);
+                }
+
+                // admin_zw_app_user_batch
+                if ($pathinfo === '/admin/zw/app/user/batch') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'zw.admin.user',  '_sonata_name' => 'admin_zw_app_user_batch',  '_route' => 'admin_zw_app_user_batch',);
+                }
+
+                // admin_zw_app_user_edit
+                if (preg_match('#^/admin/zw/app/user/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_zw_app_user_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'zw.admin.user',  '_sonata_name' => 'admin_zw_app_user_edit',));
+                }
+
+                // admin_zw_app_user_delete
+                if (preg_match('#^/admin/zw/app/user/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_zw_app_user_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'zw.admin.user',  '_sonata_name' => 'admin_zw_app_user_delete',));
+                }
+
+                // admin_zw_app_user_show
+                if (preg_match('#^/admin/zw/app/user/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_zw_app_user_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'zw.admin.user',  '_sonata_name' => 'admin_zw_app_user_show',));
+                }
+
+                // admin_zw_app_user_export
+                if ($pathinfo === '/admin/zw/app/user/export') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'zw.admin.user',  '_sonata_name' => 'admin_zw_app_user_export',  '_route' => 'admin_zw_app_user_export',);
+                }
+
             }
 
         }

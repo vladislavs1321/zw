@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new ZW\AdminBundle\ZWAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

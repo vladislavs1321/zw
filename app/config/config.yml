@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -85,5 +85,7 @@ sonata_block:
 
 sonata_admin:
     title: ZiWallet Administration
-    security:
-        handler: sonata.admin.security.handler.role
+    templates:
+        layout: ZWAdminBundle::layout.html.twig
+    # security:
+    #     handler: sonata.admin.security.handler.role
