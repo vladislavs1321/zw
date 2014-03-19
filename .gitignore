@@ -3,6 +3,7 @@ app/bootstrap*
 
 # Symfony directories
 vendor/*
+/vendor/
 */logs/*
 */cache/*
 web/uploads/*
@@ -16,3 +17,24 @@ parameters.yml
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
+
+app/*\.cache
+app/cache/*
+
+app/logs/*
+
+app/config/parameters.yml
+app/config/*.local.yml
+behat.yml
+
+web/bundles/*
+web/css/*
+web/js/*
+web/assets/compiled/*
+web/media/*
+
+bin/behat
+bin/doctrine*
+bin/phpspec
+bin/webunit
+vendor/*
