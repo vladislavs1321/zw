@@ -15,12 +15,42 @@ class Device
 {
     /**
      * @var integer
+     */
+    const TYPE_ANDROID = 1;
+
+    /**
+     * @var integer
+     */
+    const TYPE_IPHONE = 2;
+
+    /**
+     * @var integer
+     */
+    const TYPE_IPAD = 3;
+
+    /**
+     * @var array
+     */
+    public static $allowedTypes = array(
+        self::TYPE_ANDROID => 'Android',
+        self::TYPE_IPHONE => 'iPhone',
+        self::TYPE_IPAD => 'iPad',
+    );
+
+    /**
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $type;
 
     /**
      *
@@ -47,28 +77,6 @@ class Device
     {
         return (string) $this->name;
     }
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * Set user
@@ -92,6 +100,7 @@ class Device
     {
         return $this->user;
     }
+
     /**
      * Constructor
      */
@@ -121,5 +130,40 @@ class Device
     public function removeUser(\ZW\AppBundle\Entity\User $user)
     {
         $this->user->removeElement($user);
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Device
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        $this->name = self::$allowedTypes[$this->type];
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

@@ -18,15 +18,15 @@ class LoadLanguageData extends AbstractFixture implements OrderedFixtureInterfac
     public function load(ObjectManager $manager)
     {
         $device1 = new Device();
-        $device1->setName('Android');
+        $device1->setType(Device::TYPE_ANDROID);
         $manager->persist($device1);
 
         $device2 = new Device();
-        $device2->setName('iPhone');
+        $device2->setType(Device::TYPE_IPHONE);
         $manager->persist($device2);
 
         $device3 = new Device();
-        $device3->setName('iPad');
+        $device3->setType(Device::TYPE_IPAD);
         $manager->persist($device3);
 
         $manager->flush();

@@ -19,7 +19,6 @@ class RegistrationFormType extends BaseType
             ->add('country', 'country', array(
                 'label' => 'Старна:',
                 'error_bubbling' => true,
-
                 'choices' => array(
                    'BY' => \Symfony\Component\Intl\Intl::getRegionBundle()->getCountryName('BY', 'ru'),
                    'RU' => \Symfony\Component\Intl\Intl::getRegionBundle()->getCountryName('RU', 'ru'),
@@ -31,21 +30,19 @@ class RegistrationFormType extends BaseType
                 'attr' => array('placeholder' => '+7 (...) ... .. ..'),
             ))
             ->add('plainPassword', 'repeated', array(
-                    'type' => 'password',
-                    
-                    'first_options' => array(
+                'type' => 'password',
+                'first_options' => array(
 //                        'attr' => array('placeholder' => 'form.placeholder.password'),
                         'label' => 'Пароль:',
-                        'error_bubbling' => true,
-                    ),
-                    'second_options' => array(
+                    'error_bubbling' => true,
+                ),
+                'second_options' => array(
 //                        'attr' => array('placeholder' => 'form.placeholder.confirm_password'),
-                        'label' => 'Подтвердите пароль:',
-                        'error_bubbling' => true
-                    ),
-                    'invalid_message' => 'fos_user.password.mismatch',
-                )
-            )
+                    'label' => 'Подтвердите пароль:',
+                    'error_bubbling' => true
+                ),
+                'invalid_message' => 'fos_user.password.mismatch',
+            ))
             ->add('email', 'email', array(
                 'label' => 'Email:',
                 'error_bubbling' => true
