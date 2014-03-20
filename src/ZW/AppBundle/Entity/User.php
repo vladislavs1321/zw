@@ -24,10 +24,58 @@ class User extends BaseUser
      */
     protected $balance;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="ZW\AppBundle\Entity\Device")
+     */
+    protected $devices;
+
+    /**
+     * @ORM\Column(nullable=true)
+     */
+    protected $country;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isEmailConfirmed;
+
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->devices = array();
+    }
+
+    /**
+     * Sets the email.
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->setUsername($email);
+        $this->isEmailConfirmed = false;
+
+        return parent::setEmail($email);
+    }
+
+    /**
+     * Set the canonical email.
+     *
+     * @param string $emailCanonical
+     * @return User
+     */
+    public function setEmailCanonical($emailCanonical)
+    {
+        $this->setUsernameCanonical($emailCanonical);
+
+        return parent::setEmailCanonical($emailCanonical);
     }
 
     /**
@@ -61,5 +109,101 @@ class User extends BaseUser
     public function getBalance()
     {
         return $this->balance;
+    }
+
+    /**
+     * Set countries
+     *
+     * @return User
+     */
+    public function setCountry($countries)
+    {
+        $this->country = $countries;
+    
+        return $this;
+    }
+
+    /**
+     * Get countries
+     *
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $phone
+     * @return self
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Add devices
+     *
+     * @param \ZW\AppBundle\Entity\Device $devices
+     * @return User
+     */
+    public function addDevice(\ZW\AppBundle\Entity\Device $devices)
+    {
+        $this->devices[] = $devices;
+
+        return $this;
+    }
+
+    /**
+     * Remove devices
+     *
+     * @param \ZW\AppBundle\Entity\Device $devices
+     */
+    public function removeDevice(\ZW\AppBundle\Entity\Device $devices)
+    {
+        $this->devices->removeElement($devices);
+    }
+
+    /**
+     * Get devices
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDevices()
+    {
+        return $this->devices;
+    }
+
+    /**
+     * Set isEmailConfirmed
+     *
+     * @param boolean $isEmailConfirmed
+     * @return User
+     */
+    public function setIsEmailConfirmed($isEmailConfirmed)
+    {
+        $this->isEmailConfirmed = $isEmailConfirmed;
+
+        return $this;
+    }
+
+    /**
+     * Get isEmailConfirmed
+     *
+     * @return boolean 
+     */
+    public function getIsEmailConfirmed()
+    {
+        return $this->isEmailConfirmed;
     }
 }

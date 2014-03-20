@@ -17,4 +17,10 @@
         </service>
     </services>
     -->
+    <services>
+        <service id="zw_app.registration.form.type" class="ZW\AppBundle\Form\Type\RegistrationFormType">
+            <tag name="form.type" alias="zw_app_registration" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+    </services>
 </container>

@@ -72,6 +72,14 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: ZW\AppBundle\Entity\User
+    registration:
+        form:
+            type: zw_app_registration
+        confirmation:
+            enabled:    true
+    from_email:
+        address:        noreply@ziwallet.com
+        sender_name:    ZiWallet
 
 sonata_block:
     default_contexts: [cms]
