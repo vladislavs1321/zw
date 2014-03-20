@@ -7,4 +7,9 @@
     <route id="zw_app_homepage" pattern="/">
         <default key="_controller">ZWAppBundle:Default:index</default>
     </route>
+
+    <route id="zw_app_profile_index" pattern="/profile">
+        <default key="_controller">ZWAppBundle:Profile:index</default>
+    </route>
+
 </routes>
