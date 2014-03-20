@@ -4,10 +4,12 @@ namespace ZW\AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use ZW\AppBundle\Entity\Balance;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
 {
@@ -20,7 +22,7 @@ class User extends BaseUser
 
     /**
      *
-     * @ORM\OneToOne(targetEntity="ZW\AppBundle\Entity\Balance", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="ZW\AppBundle\Entity\Balance", inversedBy="user", cascade={"persist"})
      */
     protected $balance;
 
@@ -205,5 +207,14 @@ class User extends BaseUser
     public function getIsEmailConfirmed()
     {
         return $this->isEmailConfirmed;
+    }
+
+    /**
+    * @ORM\PrePersist
+    */
+    public function setNewBalance()
+    {
+        $this->balance = new Balance();
+        $this->balance->setUser($this);
     }
 }

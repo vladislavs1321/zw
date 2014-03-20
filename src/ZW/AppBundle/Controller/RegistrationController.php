@@ -36,7 +36,6 @@ class RegistrationController extends BaseController
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->container->get('event_dispatcher');
         /** @var Symfony\Bridge\Doctrine\RegistryInterface */
-        $doctrine = $this->container->get('doctrine');
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
@@ -57,13 +56,6 @@ class RegistrationController extends BaseController
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
             	$user->setEnabled(true);
-
-                $balance = new Balance();
-                $user->setBalance($balance);
-                $userManager->updateUser($user);
-                $balance->setUser($user);
-                $this->container->get('doctrine')->getManager()->persist($balance);
-                $this->container->get('doctrine')->getManager()->flush($balance);
 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->container->get('router')->generate('fos_user_registration_confirmed');

@@ -23,6 +23,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                default_target_path: zw_app_profile_index
             logout:       true
             anonymous:    true
 

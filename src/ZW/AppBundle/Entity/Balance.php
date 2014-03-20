@@ -29,7 +29,7 @@ class Balance
     private $amount;
 
     /**
-     * @ORM\OneToOne(targetEntity="ZW\AppBundle\Entity\User", inversedBy="balance")
+     * @ORM\OneToOne(targetEntity="ZW\AppBundle\Entity\User", mappedBy="balance")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
