@@ -1,0 +1,32 @@
+parameters:
+    zw_api.katanaads.client.class: ZW\ApiBundle\Client\KatanaAdsClient
+    zw_api.katanaads.client.url: http://cpa.katanaads.com/offers/offers.json/
+    zw_api.katanaads.client.config:
+        request.options:
+            query:
+                api_key: AFFUx0Uy73ewD8VzBjuzJO1diuPT7Z
+    zw_api.abstract.manager.class: ZW\ApiBundle\Manager\AbstractManager
+    zw_api.katanaads.manager.class: ZW\ApiBundle\Manager\KatanaAds
+
+services:
+    # Managers configuration
+    zw_api.katanaads.manager:
+        class: "%zw_api.katanaads.manager.class%"
+        arguments: ["@zw_api.katanaads.client"]
+        lazy: true
+        public: true
+
+    # Clients configurations
+    zw_api.katanaads.client:
+        class: "%zw_api.katanaads.client.class%"
+        arguments: ["%zw_api.katanaads.client.url%", "%zw_api.katanaads.client.config%"]
+        calls:
+            - ["setDescription", ["@zw_api.katanaads.client.service_description"]]
+        tags:
+            - {name: guzzle.client}
+
+    zw_api.katanaads.client.service_description:
+        class: "%guzzle.service_description.class%"
+        factory_class: "%guzzle.service_description.class%"
+        factory_method: factory
+        arguments: ["%zw_api.katanaads.client.service_description.file_path%"]

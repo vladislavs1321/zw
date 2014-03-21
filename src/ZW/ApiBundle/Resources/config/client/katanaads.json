@@ -1,0 +1,17 @@
+{
+    "name": "KatanaAds",
+    "baseUrl": "http://cpa.katanaads.com/offers/offers.json/",
+
+    "operations": {
+        "getOfferList": {
+            "httpMethod": "GET",
+            "uri": "",
+            "summary": "Offers list",
+            "class": "ZW\\ApiBundle\\Client\\Command\\DeserializeCommand",
+            "responseClass": "ZW\\ApiBundle\\Model\\Response\\OfferList",
+            "parameters": {
+
+            }
+        }
+    }
+}

@@ -28,11 +28,12 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             // Project bundles
             new ZW\AdminBundle\ZWAdminBundle(),
             new ZW\AppBundle\ZWAppBundle(),
-
+            new ZW\ApiBundle\ZWApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
