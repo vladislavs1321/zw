@@ -29,7 +29,46 @@ class Offer
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $description;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $payout_type;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $protocol;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $expiration_date;
+    
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $preview_url;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $payout;
+
+
+    private $categories;
+    
+    private $countries;
+
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->countries = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     /**
      * Get id
      *
