@@ -21,7 +21,6 @@ class User extends BaseUser
     protected $id;
 
     /**
-     *
      * @ORM\OneToOne(targetEntity="ZW\AppBundle\Entity\Balance", inversedBy="user", cascade={"persist"})
      */
     protected $balance;
@@ -210,11 +209,10 @@ class User extends BaseUser
     }
 
     /**
-    * @ORM\PrePersist
-    */
+     * @ORM\PrePersist
+     */
     public function setNewBalance()
     {
         $this->balance = new Balance();
-        $this->balance->setUser($this);
     }
 }

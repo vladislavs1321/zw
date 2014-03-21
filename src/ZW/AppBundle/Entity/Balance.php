@@ -30,13 +30,9 @@ class Balance
 
     /**
      * @ORM\OneToOne(targetEntity="ZW\AppBundle\Entity\User", mappedBy="balance")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
-    /**
-     * 
-     */
     public function __construct()
     {
         $this->amount = 0;
