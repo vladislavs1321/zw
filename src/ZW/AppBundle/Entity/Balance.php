@@ -29,6 +29,12 @@ class Balance
     private $amount;
 
     /**
+     *
+     * @ORM\Column(name="payout", type="decimal", precision=6, scale=2)
+     */
+    private $payout;
+
+    /**
      * @ORM\OneToOne(targetEntity="ZW\AppBundle\Entity\User", mappedBy="balance")
      */
     private $user;
@@ -36,6 +42,7 @@ class Balance
     public function __construct()
     {
         $this->amount = 0;
+        $this->payout = 0;
     }
 
     /**
@@ -92,5 +99,28 @@ class Balance
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set payout
+     *
+     * @param string $payout
+     * @return Balance
+     */
+    public function setPayout($payout)
+    {
+        $this->payout = $payout;
+
+        return $this;
+    }
+
+    /**
+     * Get payout
+     *
+     * @return string 
+     */
+    public function getPayout()
+    {
+        return $this->payout;
     }
 }

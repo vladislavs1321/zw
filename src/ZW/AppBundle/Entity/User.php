@@ -45,11 +45,22 @@ class User extends BaseUser
      */
     private $isEmailConfirmed;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $ip;
+
+    /**
+     *
+     * @ORM\Column(name="registration_date", type="datetime", nullable=true)
+     */
+    private $registrationDate;
 
     public function __construct()
     {
         parent::__construct();
         $this->devices = array();
+        $this->registrationDate = new \DateTime();
     }
 
     /**
@@ -214,5 +225,28 @@ class User extends BaseUser
     public function setNewBalance()
     {
         $this->balance = new Balance();
+    }
+
+    /**
+     * Set ip
+     *
+     * @param string $ip
+     * @return User
+     */
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+
+        return $this;
+    }
+
+    /**
+     * Get ip
+     *
+     * @return string 
+     */
+    public function getIp()
+    {
+        return $this->ip;
     }
 }

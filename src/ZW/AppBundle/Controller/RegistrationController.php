@@ -56,6 +56,7 @@ class RegistrationController extends BaseController
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
             	$user->setEnabled(true);
+                $user->setIp($request->getClientIp());
 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->container->get('router')->generate('fos_user_registration_confirmed');

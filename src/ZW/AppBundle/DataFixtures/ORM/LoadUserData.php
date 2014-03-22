@@ -37,6 +37,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $admin->addRole('ROLE_ADMIN');
         $admin->setPhone(000);
         $admin->setEnabled(true);
+        $admin->setIp('127.0.0.1');
+        $admin->setCountry('BY');
         $userManager->updateUser($admin);
     }
 
