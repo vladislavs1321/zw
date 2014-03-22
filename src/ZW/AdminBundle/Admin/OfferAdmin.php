@@ -15,13 +15,42 @@ use Sonata\AdminBundle\Validator\ErrorElement;
  */
 class OfferAdmin extends Admin
 {
+    /**
+     * {@inheritDoc}
+     */
+    protected $baseRouteName = 'active_offer';
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $baseRoutePattern = 'offer';
+
+    /**
+     * {@inheritdoc}
+    */
+    public function createQuery($context = 'list')
+    {
+        $qb = parent::createQuery($context = 'list');
+
+        $qb
+            ->andWhere($qb->getRootAlias() . '.enabled = :var')
+            ->andWhere($qb->getRootAlias() . '.moderated = :var2')
+            ->setParameter('var', true)
+            ->setParameter('var2', true)
+        ;
+
+        return $qb;
+    }
+
 	/**
 	 * @inheritDoc
 	 */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('enabled')
+            ->add('enabled', null, array(
+                'required' => false
+            ))
             ->add('quota')
         ;
     }
@@ -33,6 +62,9 @@ class OfferAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('imageUrl', null, array(
+                'template' => 'ZWAdminBundle:Offer:image.html.twig'
+            ))
             ->add('name')
             ->add('previewUrl', null, array(
                 'template' => 'ZWAdminBundle:Offer:preview_url.html.twig'

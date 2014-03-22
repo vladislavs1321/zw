@@ -99,6 +99,11 @@ class Offer
      */
     private $moderated;
 
+    /**
+     * @ORM\Column(name="image_url", type="string", length=255)
+     */
+    private $imageUrl;
+
     public function __construct()
     {
         $this->enabled = false;
@@ -479,5 +484,28 @@ class Offer
     public function getModerated()
     {
         return $this->moderated;
+    }
+
+    /**
+     * Set imageUrl
+     *
+     * @param string $imageUrl
+     * @return Offer
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get imageUrl
+     *
+     * @return string 
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
     }
 }

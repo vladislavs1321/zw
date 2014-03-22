@@ -13,7 +13,7 @@ use Sonata\AdminBundle\Validator\ErrorElement;
 /**
  * @author Vladislav Shishko <13thMerlin@gmail.com>
  */
-class ModeratedOfferAdmin extends Admin
+class DisabledOfferAdmin extends Admin
 {
     /**
      * {@inheritdoc}
@@ -23,21 +23,22 @@ class ModeratedOfferAdmin extends Admin
         $qb = parent::createQuery($context = 'list');
 
         $qb
-            ->andWhere($qb->getRootAlias() . '.moderated = :var')
-            // ->andWhere($qb->getRootAlias() . '.enabled = :var2')
+            ->andWhere($qb->getRootAlias() . '.enabled = :var')
             ->setParameter('var', false)
-            // ->setParameter('var2', false)
         ;
 
         return $qb;
     }
 
-    protected $baseRouteName = 'moderation_offer';
+    /**
+     * {@inheritDoc}
+     */
+    protected $baseRouteName = 'disabled_offer';
 
     /**
      * {@inheritDoc}
      */
-    protected $baseRoutePattern = 'moderation/offer';
+    protected $baseRoutePattern = 'disabled/offer';
 
 	/**
 	 * @inheritDoc
@@ -45,7 +46,7 @@ class ModeratedOfferAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('moderated', null, array(
+            ->add('enabled', null, array(
                 'required' => false
             ))
             ->add('quota')
@@ -75,7 +76,7 @@ class ModeratedOfferAdmin extends Admin
             ->add('paid', null, array(
                 'template' => 'ZWAdminBundle:Offer:paid.html.twig'
             ))
-            ->addIdentifier('moderated')
+            ->addIdentifier('enabled')
         ;
     }
    

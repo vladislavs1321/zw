@@ -29,6 +29,7 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
         $offer->setQuota('123');
         $offer->setClickCount('30');
         $offer->setDownloadCount('10');
+        $offer->setImageUrl('u114_normal.jpg');
 
 
         $this->addReference('offer-country', $offer);
@@ -47,8 +48,9 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
         $offer2->setQuota('666');
         $offer2->setClickCount('13');
         $offer2->setDownloadCount('2');
-        $offer2->setModerated(true);
-        $offer2->setEnabled(true);
+        $offer2->setImageUrl('u116_normal.jpg');
+        // $offer2->setModerated(true);
+        // $offer2->setEnabled(true);
 
 
         $this->addReference('offer2-country', $offer2);
