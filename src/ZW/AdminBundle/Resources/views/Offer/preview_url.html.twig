@@ -1,0 +1,5 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{%- block field %}
+	<a href="{{ value|replace({'\\': ''}) }}" target="_blank">предпросмотр</a>
+{% endblock -%}

@@ -50,9 +50,9 @@ class Offer
     private $expiration_date;
     
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="preview_url", type="string", length=255)
      */
-    private $preview_url;
+    private $previewUrl;
 
     /**
      * @ORM\Column(type="float")
@@ -74,8 +74,35 @@ class Offer
      */
     private $countries;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $quota;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $clickCount;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $downloadCount;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $modearated;
+
     public function __construct()
     {
+        $this->enabled = false;
+        $this->modearated = false;
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->countries = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -205,26 +232,26 @@ class Offer
     }
 
     /**
-     * Set preview_url
+     * Set previewUrl
      *
      * @param string $previewUrl
      * @return Offer
      */
     public function setPreviewUrl($previewUrl)
     {
-        $this->preview_url = $previewUrl;
+        $this->previewUrl = $previewUrl;
 
         return $this;
     }
 
     /**
-     * Get preview_url
+     * Get previewUrl
      *
      * @return string 
      */
     public function getPreviewUrl()
     {
-        return $this->preview_url;
+        return $this->previewUrl;
     }
 
     /**
@@ -337,5 +364,120 @@ class Offer
     public function getCurrency()
     {
         return $this->currency;
+    }
+
+    /**
+     * Set quota
+     *
+     * @param integer $quota
+     * @return Offer
+     */
+    public function setQuota($quota)
+    {
+        $this->quota = $quota;
+
+        return $this;
+    }
+
+    /**
+     * Get quota
+     *
+     * @return integer 
+     */
+    public function getQuota()
+    {
+        return $this->quota;
+    }
+
+    /**
+     * Set clickCount
+     *
+     * @param integer $clickCount
+     * @return Offer
+     */
+    public function setClickCount($clickCount)
+    {
+        $this->clickCount = $clickCount;
+
+        return $this;
+    }
+
+    /**
+     * Get clickCount
+     *
+     * @return integer 
+     */
+    public function getClickCount()
+    {
+        return $this->clickCount;
+    }
+
+    /**
+     * Set downloadCount
+     *
+     * @param integer $downloadCount
+     * @return Offer
+     */
+    public function setDownloadCount($downloadCount)
+    {
+        $this->downloadCount = $downloadCount;
+
+        return $this;
+    }
+
+    /**
+     * Get downloadCount
+     *
+     * @return integer 
+     */
+    public function getDownloadCount()
+    {
+        return $this->downloadCount;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     * @return Offer
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean 
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set modearated
+     *
+     * @param boolean $modearated
+     * @return Offer
+     */
+    public function setModearated($modearated)
+    {
+        $this->modearated = $modearated;
+
+        return $this;
+    }
+
+    /**
+     * Get modearated
+     *
+     * @return boolean 
+     */
+    public function getModearated()
+    {
+        return $this->modearated;
     }
 }

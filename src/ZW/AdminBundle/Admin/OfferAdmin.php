@@ -21,18 +21,32 @@ class OfferAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
+            ->add('enabled')
+            ->add('quota')
         ;
     }
 
     /**
-	 * @inheritDoc
-	 */
+     * @inheritDoc
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->addIdentifier('id')
             ->add('name')
+            ->add('previewUrl', null, array(
+                'template' => 'ZWAdminBundle:Offer:preview_url.html.twig'
+            ))
+            ->add('categories')
+            ->add('countries')
+            ->add('payout')
+            ->add('quota')
+            ->add('clickCount')
+            ->add('downloadCount')
+            ->add('paid', null, array(
+                'template' => 'ZWAdminBundle:Offer:paid.html.twig'
+            ))
+            ->addIdentifier('enabled')
         ;
     }
    
