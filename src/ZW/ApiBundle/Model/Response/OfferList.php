@@ -40,4 +40,28 @@ class OfferList
             : array()
         ;
     }
+
+    /**
+     * @return boolean
+     */
+    public function getSuccess()
+    {
+        return $this->success;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRows()
+    {
+        return $this->rows;
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
 }

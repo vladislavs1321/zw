@@ -12,10 +12,6 @@ use Symfony\Component\OptionsResolver\Exception\ExceptionInterface;
  */
 class TestClientCommand extends ContainerAwareCommand
 {
-    private static $API_KEY = '2993ab6f-3256-4ace-8d1d-614f6e216e6d';
-    private static $API_SECRET = '1e22b2fa38';
-    private static $API_URL = 'https://sandbox-api.bancboxcrowd.com/crowd/v0/cfp/';
-
     /**
      * @inheritdoc
      */
@@ -39,6 +35,8 @@ class TestClientCommand extends ContainerAwareCommand
         $katana = $this->getContainer()->get('zw_api.katanaads.manager');
         $response = $katana->getOfferList();
 
-        var_dump($response);
+        foreach ($response->getOffers() as $offer) {
+            var_dump($offer->getDescription());
+        }
     }
 }
