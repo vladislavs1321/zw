@@ -34,7 +34,28 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('offer-country', $offer);
         $this->addReference('offer-category', $offer);
 
+
+        $offer2 = new Offer();
+        $offer2->setName('ShitOffer');
+        $offer2->setDescription('Fucking amazing offer for many unhappy people! CYA!');
+        $offer2->setPayoutType('cpa_flat');
+        $offer2->setProtocol('server');
+        $offer2->setExpirationDate(new \DateTime());
+        $offer2->setPreviewUrl('https:\/\/play.google.com\/store\/apps\/details?id=com.baidu.browser.inter');
+        $offer2->setPayout(0.1);
+        $offer2->setCurrency('USD');
+        $offer2->setQuota('666');
+        $offer2->setClickCount('13');
+        $offer2->setDownloadCount('2');
+        $offer2->setModerated(true);
+        $offer2->setEnabled(true);
+
+
+        $this->addReference('offer2-country', $offer2);
+        $this->addReference('offer2-category', $offer2);
+
         $manager->persist($offer);
+        $manager->persist($offer2);
         $manager->flush();
     }
 

@@ -11,11 +11,18 @@
             <argument />
       </service>
 
-      <service id="zw.admin.offer" class="ZW\AdminBundle\Admin\OfferAdmin">
-            <tag name="sonata.admin" manager_type="orm" group="Предложение" label="Действия:"/>
+        <service id="zw.admin.offer" class="ZW\AdminBundle\Admin\OfferAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Предложение" label="Активные:"/>
             <argument />
             <argument>ZW\AppBundle\Entity\Offer</argument>
             <argument />
-      </service>
+        </service>
+
+        <service id="zw.admin.moderated_offer" class="ZW\AdminBundle\Admin\ModeratedOfferAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Предложение" label="На модерации:"/>
+            <argument />
+            <argument>ZW\AppBundle\Entity\Offer</argument>
+            <argument />
+        </service>
    </services>
 </container>

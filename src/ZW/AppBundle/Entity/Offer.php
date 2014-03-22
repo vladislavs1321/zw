@@ -97,12 +97,12 @@ class Offer
     /**
      * @ORM\Column(type="boolean")
      */
-    private $modearated;
+    private $moderated;
 
     public function __construct()
     {
         $this->enabled = false;
-        $this->modearated = false;
+        $this->moderated = false;
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->countries = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -459,25 +459,25 @@ class Offer
     }
 
     /**
-     * Set modearated
+     * Set moderated
      *
-     * @param boolean $modearated
+     * @param boolean $moderated
      * @return Offer
      */
-    public function setModearated($modearated)
+    public function setModerated($moderated)
     {
-        $this->modearated = $modearated;
+        $this->moderated = $moderated;
 
         return $this;
     }
 
     /**
-     * Get modearated
+     * Get moderated
      *
      * @return boolean 
      */
-    public function getModearated()
+    public function getModerated()
     {
-        return $this->modearated;
+        return $this->moderated;
     }
 }

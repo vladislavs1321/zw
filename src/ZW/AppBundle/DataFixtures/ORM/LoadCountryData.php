@@ -25,8 +25,13 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
         $country2->setName('EN');
         $country2->setOffer($this->getReference('offer-country'));
 
+        $country3 = new Country();
+        $country3->setName('EN');
+        $country3->setOffer($this->getReference('offer2-country'));
+
         $manager->persist($country);
         $manager->persist($country2);
+        $manager->persist($country3);
         $manager->flush();
     }
 
