@@ -21,7 +21,7 @@ class Offer
      *
      * @var string
      */
-    private $id;
+    private $offerId;
 
     /**
      * @Serializer\SerializedName("name")
@@ -122,9 +122,9 @@ class Offer
     /**
      * @return string
      */
-    public function getId()
+    public function getOfferId()
     {
-        return $this->id;
+        return $this->offerId;
     }
 
     /**
@@ -200,26 +200,58 @@ class Offer
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getCategories()
     {
-        return $this->categories;
+        return explode(
+            self::PLURAL_DATA_SEPARATOR,
+            $this->categories
+        );
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getCountries()
     {
-        return $this->countries;
+        return array_map(
+            'trim',
+            explode(
+                self::PLURAL_DATA_SEPARATOR,
+                $this->countries
+            )
+        );
     }
 
     /**
-     * @return string
+     * @return string|null
+     */
+    public function getCountryByIndex($index)
+    {
+        $countries = explode(
+            self::PLURAL_DATA_SEPARATOR,
+            $this->countries
+        );
+
+        if (!isset($countries[$index])) {
+            return null;
+        }
+
+        return trim($countries[$index]);
+    }
+
+    /**
+     * @return array
      */
     public function getCountriesShort()
     {
-        return $this->countriesShort;
+        return array_map(
+            'trim',
+            explode(
+                self::PLURAL_DATA_SEPARATOR,
+                $this->countriesShort
+            )
+        );
     }
 }

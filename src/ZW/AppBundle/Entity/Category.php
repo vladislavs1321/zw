@@ -7,7 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Category
  *
- * @ORM\Table(name="category")
+ * @ORM\Table(
+ *     name="category",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="category_name", columns={"name"})}
+ * )
  * @ORM\Entity
  */
 class Category
@@ -29,9 +32,17 @@ class Category
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ZW\AppBundle\Entity\Offer")
+     * @ORM\ManyToMany(targetEntity="Offer", mappedBy="categories")
      */
-    private $offer;
+    private $offers;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->offers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -72,25 +83,35 @@ class Category
     }
 
     /**
-     * Set offer
+     * Add offers
      *
-     * @param \ZW\AppBundle\Entity\Offer $offer
+     * @param \ZW\AppBundle\Entity\Offer $offers
      * @return Category
      */
-    public function setOffer(\ZW\AppBundle\Entity\Offer $offer = null)
+    public function addOffer(Offer $offers)
     {
-        $this->offer = $offer;
+        $this->offers[] = $offers;
 
         return $this;
     }
 
     /**
-     * Get offer
+     * Remove offers
      *
-     * @return \ZW\AppBundle\Entity\Offer 
+     * @param \ZW\AppBundle\Entity\Offer $offers
      */
-    public function getOffer()
+    public function removeOffer(Offer $offers)
     {
-        return $this->offer;
+        $this->offers->removeElement($offers);
+    }
+
+    /**
+     * Get offers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOffers()
+    {
+        return $this->offers;
     }
 }

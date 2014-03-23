@@ -19,11 +19,11 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
     {
         $category = new Category();
         $category->setName('Android');
-        $category->setOffer($this->getReference('offer-category'));
+        $category->addOffer($this->getReference('offer'));
 
         $category2 = new Category();
         $category2->setName('iPad');
-        $category2->setOffer($this->getReference('offer2-category'));
+        $category2->addOffer($this->getReference('offer2'));
     
 
         $manager->persist($category);

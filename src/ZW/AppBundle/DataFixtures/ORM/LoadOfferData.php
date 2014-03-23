@@ -19,6 +19,7 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
     {
         $offer = new Offer();
         $offer->setName('CoolOffer');
+        $offer->setOfferId(1);
         $offer->setDescription('Fucking amazing offer for many unhappy people! CYA!');
         $offer->setPayoutType('cpa_flat');
         $offer->setProtocol('server');
@@ -32,12 +33,12 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
         $offer->setImageUrl('u114_normal.jpg');
 
 
-        $this->addReference('offer-country', $offer);
-        $this->addReference('offer-category', $offer);
+        $this->addReference('offer', $offer);
 
 
         $offer2 = new Offer();
-        $offer2->setName('ShitOffer');
+        $offer2->setOfferId(1686);
+        $offer2->setName('Existed offer with outdated data');
         $offer2->setDescription('Fucking amazing offer for many unhappy people! CYA!');
         $offer2->setPayoutType('cpa_flat');
         $offer2->setProtocol('server');
@@ -53,8 +54,7 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
         // $offer2->setEnabled(true);
 
 
-        $this->addReference('offer2-country', $offer2);
-        $this->addReference('offer2-category', $offer2);
+        $this->addReference('offer2', $offer2);
 
         $manager->persist($offer);
         $manager->persist($offer2);

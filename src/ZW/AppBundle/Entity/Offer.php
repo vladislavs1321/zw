@@ -7,7 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Offer
  *
- * @ORM\Table(name="offer")
+ * @ORM\Table(
+ *     name="offer",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="original_id", columns={"offer_id"})}
+ * )
  * @ORM\Entity
  * @author Vladislav Shishko <13thMerlin@gmail.com>
  */
@@ -23,6 +26,13 @@ class Offer
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="offer_id", type="integer")
+     */
+    private $offerId;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -35,19 +45,19 @@ class Offer
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="payout_type", type="string", length=255, nullable=true)
      */
-    private $payout_type;
+    private $payoutType;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $protocol;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="expiration_date", type="date")
      */
-    private $expiration_date;
+    private $expirationDate;
     
     /**
      * @ORM\Column(name="preview_url", type="string", length=255)
@@ -55,37 +65,37 @@ class Offer
     private $previewUrl;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $payout;
 
     /**
-     * @ORM\OneToMany(targetEntity="ZW\AppBundle\Entity\Category", mappedBy="offer")
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="offers", cascade={"persist"})
      */
     private $categories;
     
      /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $currency;
 
     /**
-     * @ORM\OneToMany(targetEntity="ZW\AppBundle\Entity\Country", mappedBy="offer")
+     * @ORM\ManyToMany(targetEntity="Country", inversedBy="offers", cascade={"persist"})
      */
     private $countries;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $quota;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $clickCount;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $downloadCount;
 
@@ -100,7 +110,7 @@ class Offer
     private $moderated;
 
     /**
-     * @ORM\Column(name="image_url", type="string", length=255)
+     * @ORM\Column(name="image_url", type="string", length=255, nullable=true)
      */
     private $imageUrl;
 
@@ -168,26 +178,26 @@ class Offer
     }
 
     /**
-     * Set payout_type
+     * Set payoutType
      *
      * @param string $payoutType
      * @return Offer
      */
     public function setPayoutType($payoutType)
     {
-        $this->payout_type = $payoutType;
+        $this->payoutType = $payoutType;
 
         return $this;
     }
 
     /**
-     * Get payout_type
+     * Get payoutType
      *
      * @return string 
      */
     public function getPayoutType()
     {
-        return $this->payout_type;
+        return $this->payoutType;
     }
 
     /**
@@ -214,26 +224,26 @@ class Offer
     }
 
     /**
-     * Set expiration_date
+     * Set expirationDate
      *
      * @param \DateTime $expirationDate
      * @return Offer
      */
     public function setExpirationDate($expirationDate)
     {
-        $this->expiration_date = $expirationDate;
+        $this->expirationDate = $expirationDate;
 
         return $this;
     }
 
     /**
-     * Get expiration_date
+     * Get expirationDate
      *
      * @return \DateTime 
      */
     public function getExpirationDate()
     {
-        return $this->expiration_date;
+        return $this->expirationDate;
     }
 
     /**
@@ -283,12 +293,25 @@ class Offer
     }
 
     /**
+     * Set categories
+     *
+     * @param \Doctrine\Common\Collections\Collection $categories
+     * @return Offer
+     */
+    public function setCategories(\Doctrine\Common\Collections\Collection $categories)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
      * Add categories
      *
      * @param \ZW\AppBundle\Entity\Category $categories
      * @return Offer
      */
-    public function addCategory(\ZW\AppBundle\Entity\Category $categories)
+    public function addCategory(Category $categories)
     {
         $this->categories[] = $categories;
 
@@ -300,7 +323,7 @@ class Offer
      *
      * @param \ZW\AppBundle\Entity\Category $categories
      */
-    public function removeCategory(\ZW\AppBundle\Entity\Category $categories)
+    public function removeCategory(Category $categories)
     {
         $this->categories->removeElement($categories);
     }
@@ -316,12 +339,25 @@ class Offer
     }
 
     /**
+     * Set countries
+     *
+     * @param \Doctrine\Common\Collections\Collection $countries
+     * @return Offer
+     */
+    public function setCountries(\Doctrine\Common\Collections\Collection $countries)
+    {
+        $this->countries = $countries;
+
+        return $this;
+    }
+
+    /**
      * Add countries
      *
      * @param \ZW\AppBundle\Entity\Country $countries
      * @return Offer
      */
-    public function addCountry(\ZW\AppBundle\Entity\Country $countries)
+    public function addCountry(Country $countries)
     {
         $this->countries[] = $countries;
 
@@ -333,7 +369,7 @@ class Offer
      *
      * @param \ZW\AppBundle\Entity\Country $countries
      */
-    public function removeCountry(\ZW\AppBundle\Entity\Country $countries)
+    public function removeCountry(Country $countries)
     {
         $this->countries->removeElement($countries);
     }
@@ -507,5 +543,28 @@ class Offer
     public function getImageUrl()
     {
         return $this->imageUrl;
+    }
+
+    /**
+     * Set offerId
+     *
+     * @param integer $offerId
+     * @return Offer
+     */
+    public function setOfferId($offerId)
+    {
+        $this->offerId = $offerId;
+
+        return $this;
+    }
+
+    /**
+     * Get offerId
+     *
+     * @return integer 
+     */
+    public function getOfferId()
+    {
+        return $this->offerId;
     }
 }

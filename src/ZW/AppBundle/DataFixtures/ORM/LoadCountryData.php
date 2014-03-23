@@ -18,20 +18,21 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $country = new Country();
-        $country->setName('RU');
-        $country->setOffer($this->getReference('offer-country'));
+        $country->setShortName('RU');
+        $country->addOffer($this->getReference('offer'));
+        $manager->persist($country);
 
         $country2 = new Country();
-        $country2->setName('EN');
-        $country2->setOffer($this->getReference('offer-country'));
+        $country2->setShortName('EN');
+        $country2->addOffer($this->getReference('offer'));
+        $country2->addOffer($this->getReference('offer2'));
+        $manager->persist($country2);
 
         $country3 = new Country();
-        $country3->setName('EN');
-        $country3->setOffer($this->getReference('offer2-country'));
-
-        $manager->persist($country);
-        $manager->persist($country2);
+        $country3->setShortName('ID');
+        $country3->addOffer($this->getReference('offer2'));
         $manager->persist($country3);
+
         $manager->flush();
     }
 

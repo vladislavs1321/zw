@@ -22,5 +22,24 @@
             <tag name="form.type" alias="zw_app_registration" />
             <argument>%fos_user.model.user.class%</argument>
         </service>
+
+        <!-- Api managers configuration -->
+        <service
+            id="zw_app.api_bridge.katanaads.manager"
+            class="ZW\AppBundle\ApiBridge\Manager\KatanaAdsManager"
+            parent="zw_app.api_bridge.abstract.manager"
+        >
+            <call method="setApiManager">
+                 <argument type="service" id="zw_api.katanaads.manager" />
+            </call>
+        </service>
+
+        <service
+            id="zw_app.api_bridge.abstract.manager"
+            class="ZW\AppBundle\ApiBridge\Manager\AbstractManager"
+            abstract="true"
+        >
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
     </services>
 </container>
