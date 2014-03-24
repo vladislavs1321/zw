@@ -11,7 +11,7 @@ use ZW\AppBundle\Entity\Country;
 /**
  * @author varloc2000 <varloc2000@gmail.com>
  */
-class KatanaAdsManager extends AbstractManager
+class OfferManager extends AbstractManager
 {
     private $entityMetadata;
 

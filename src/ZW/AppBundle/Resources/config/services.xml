@@ -25,8 +25,8 @@
 
         <!-- Api managers configuration -->
         <service
-            id="zw_app.api_bridge.katanaads.manager"
-            class="ZW\AppBundle\ApiBridge\Manager\KatanaAdsManager"
+            id="zw_app.api_bridge.offer.manager"
+            class="ZW\AppBundle\ApiBridge\Manager\OfferManager"
             parent="zw_app.api_bridge.abstract.manager"
         >
             <call method="setApiManager">

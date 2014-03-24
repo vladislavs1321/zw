@@ -6,20 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
-    {
-        return $this->render('ZWAdminBundle:Default:index.html.twig', array('name' => $name));
-    }
-
-
     /**
      * @return Symfony\Component\HttpFoundation\Response
      */
-    public function updateOffersAction()
+    public function importOffersAction()
     {
-    	$manager = $this->get('zw_app.api_bridge.katanaads.manager');
+        $manager = $this->get('zw_app.api_bridge.offer.manager');
         $manager->importOffers();
 
-  		return $this->redirect($this->generateUrl('sonata_admin_dashboard'));
+        return $this->redirect($this->generateUrl('sonata_admin_dashboard'));
     }
 }

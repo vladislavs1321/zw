@@ -14,14 +14,15 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         if ($request->query->has('test')) {
-            $manager = $this->get('zw_app.api_bridge.katanaads.manager');
+            $manager = $this->get('zw_app.api_bridge.offer.manager');
             $manager->importOffers();
             die();
         }
 
         // Work with offers we do with help of manager
         // @TODO: rename manager
-        $manager = $this->get('zw_app.api_bridge.katanaads.manager');
+        $manager = $this->get('zw_app.api_bridge.offer.manager');
+        $offers = $manager->getOffers();
 
         return $this->render('ZWAppBundle:Default:index.html.twig', array('name' => $name= 111));
     }

@@ -4,11 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="zw_admin_homepage" pattern="/hello/{name}">
-        <default key="_controller">ZWAdminBundle:Default:index</default>
-    </route>
-
-    <route id="zw_offers_update" pattern="/update/offers">
-        <default key="_controller">ZWAdminBundle:Default:updateOffers</default>
+    <route id="zw_offers_import" pattern="/import/offers">
+        <default key="_controller">ZWAdminBundle:Default:importOffers</default>
     </route>
 </routes>
