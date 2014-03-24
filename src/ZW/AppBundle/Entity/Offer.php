@@ -3,6 +3,7 @@
 namespace ZW\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Offer
@@ -113,6 +114,12 @@ class Offer
      * @ORM\Column(name="image_url", type="string", length=255, nullable=true)
      */
     private $imageUrl;
+
+    /**
+     * @Assert\Range(min=0, max=9999)
+     * @ORM\Column(name="show_stratgey", type="integer", nullable=true)
+     */
+    private $showStrategy;
 
     public function __construct()
     {
@@ -566,5 +573,28 @@ class Offer
     public function getOfferId()
     {
         return $this->offerId;
+    }
+
+    /**
+     * Set showStrategy
+     *
+     * @param string $showStrategy
+     * @return Offer
+     */
+    public function setShowStrategy($showStrategy)
+    {
+        $this->showStrategy = $showStrategy;
+
+        return $this;
+    }
+
+    /**
+     * Get showStrategy
+     *
+     * @return string 
+     */
+    public function getShowStrategy()
+    {
+        return $this->showStrategy;
     }
 }

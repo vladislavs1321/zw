@@ -1,3 +1,6 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
-{% block sonata_nav_menu_after %}{% include 'ZWAdminBundle:Block:user_block.html.twig'%}{% endblock %}
+{% block sonata_nav_menu_after %}
+	{% include 'ZWAdminBundle:Block:user_block.html.twig' %}
+	{% include 'ZWAdminBundle:Block:offer_block.html.twig' %}
+{% endblock %}

@@ -7,4 +7,8 @@
     <route id="zw_admin_homepage" pattern="/hello/{name}">
         <default key="_controller">ZWAdminBundle:Default:index</default>
     </route>
+
+    <route id="zw_offers_update" pattern="/update/offers">
+        <default key="_controller">ZWAdminBundle:Default:updateOffers</default>
+    </route>
 </routes>

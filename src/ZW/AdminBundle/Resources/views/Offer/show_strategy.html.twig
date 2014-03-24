@@ -1,5 +1,9 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {%- block field %}
-	<img src="{{ asset('bundles/zwapp/images/' ~ value) }}" style="max-width:64px;max-height:64px;">
+	{% if value == 0 %}
+		максимум
+	{% else %}
+		{{ value }} пок./сутки
+	{% endif %}
 {% endblock -%}

@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use FOS\UserBundle\Doctrine\UserManager;
 use FOS\UserBundle\Doctrine\GroupManager;
 use Sonata\AdminBundle\Validator\ErrorElement;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 /**
  * @author Vladislav Shishko <13thMerlin@gmail.com>
@@ -50,6 +51,10 @@ class DisabledOfferAdmin extends Admin
                 'required' => false
             ))
             ->add('quota')
+            ->add('payout')
+            ->add('showStrategy', null, array(
+                'help' => 'количество показов/день, 0(ноль) - показ без ограничений',
+            ))
         ;
     }
 
@@ -60,8 +65,9 @@ class DisabledOfferAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('imageUrl', null, array(
-                'template' => 'ZWAdminBundle:Offer:image.html.twig'
+            ->addIdentifier('imageUrl', null, array(
+                'template' => 'ZWAdminBundle:Offer:image.html.twig',
+                'route' => array('name' => 'edit')
             ))
             ->add('name')
             ->add('previewUrl', null, array(
@@ -71,6 +77,10 @@ class DisabledOfferAdmin extends Admin
             ->add('countries')
             ->add('payout')
             ->add('quota')
+            ->addIdentifier('showStrategy', null, array(
+                'template' => 'ZWAdminBundle:Offer:show_strategy.html.twig',
+                'route' => array('name' => 'edit')
+            ))
             ->add('clickCount')
             ->add('downloadCount')
             ->add('paid', null, array(
@@ -80,4 +90,11 @@ class DisabledOfferAdmin extends Admin
         ;
     }
    
+    /**
+     * @inheritDoc
+     */
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('create');
+    }
 }
